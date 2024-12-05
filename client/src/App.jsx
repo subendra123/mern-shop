@@ -21,11 +21,8 @@ import UnAuthPage from "./pages/unauth-page"
 
 function App() {
 
-  const isAuthenticated = true;
-  const user = {
-    user: "subendra",
-    role: "admin",
-  }
+  const isAuthenticated = false;
+  const user = null;
 
   
   return (
