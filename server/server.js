@@ -1,21 +1,29 @@
-const mongoose = require("mongoose");
 const express = require("express");
-// const cors = require("cors");
-// const cookieParser = require("cookie-parser");
-
 const app = express();
+const cors = require('cors');
+app.use(cors());
+require("dotenv").config();
+require("./connect/db");
+const PORT = process.env.PORT || 5000;
 
-
-mongoose.connect("mongodb://localhost:27017/mernshop").then(() => console.log("Database is Connected")
-).catch((error) => console.log(error));
-
-// const app = express();node
-const PORT = process.env.PORT || 6000;
-
-
-
-app.listen(PORT, () => console.log(`server is running now port ${PORT}`))
+const userRoute = require("./routes/UserRoutes");
 
 
 
 
+app.use(express.json());
+
+app.use(cors());
+
+app.use("/api", userRoute);
+
+app.get("/", (req, res) => {
+    res.send("Welcome to homepage");
+  })
+  
+  
+   
+  app.listen(PORT, () => {
+  console.log(`server is runing on port ${PORT}`);
+  
+  })
